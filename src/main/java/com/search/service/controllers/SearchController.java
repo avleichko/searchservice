@@ -5,6 +5,7 @@ import com.search.service.services.StorageService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,6 +31,7 @@ public class SearchController {
         this.storageService = storageService;
     }
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping
     public List<String> search(String[] searchParams) {
 
