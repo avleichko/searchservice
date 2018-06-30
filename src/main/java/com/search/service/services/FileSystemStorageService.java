@@ -4,15 +4,17 @@ import com.search.service.configs.StorageConfig;
 import exceptions.StorageException;
 import exceptions.StorageFileNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -34,7 +36,6 @@ public class FileSystemStorageService implements StorageService {
 
     @Autowired
     InMemoryDataGrid inMemoryDataGrid;
-
 
     @Override
     public String store(MultipartFile file) {
@@ -58,9 +59,7 @@ public class FileSystemStorageService implements StorageService {
                 Files.copy(inputStream, filepath, StandardCopyOption.REPLACE_EXISTING);
 
                 TreeSet<String> value = new TreeSet<>();
-                Files.lines(filepath).forEach(s -> {
-                    value.addAll(Arrays.asList(s.split(",")));
-                });
+                Files.lines(filepath).forEach(s -> value.addAll(Arrays.asList(s.split(","))));
 
                 inMemoryDataGrid.add(filename, value);
 
@@ -113,6 +112,22 @@ public class FileSystemStorageService implements StorageService {
     }
 
     @Override
+    public ResponseEntity<Resource> download(String param) {
+        File file = load(param).toFile();
+        InputStreamResource resource;
+        try {
+            resource = new InputStreamResource(new FileInputStream(file));
+        } catch (FileNotFoundException e) {
+            throw new StorageFileNotFoundException(file + "not found");
+        }
+
+        return ResponseEntity.ok()
+                .contentLength(file.length())
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                .body(resource);
+    }
+
+    @Override
     public void init() {
         try {
             Files.createDirectories(rootLocation);
@@ -121,4 +136,6 @@ public class FileSystemStorageService implements StorageService {
             throw new StorageException("Could not initialize storage", e);
         }
     }
+
+
 }
