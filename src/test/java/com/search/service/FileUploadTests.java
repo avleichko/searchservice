@@ -35,9 +35,6 @@ public class FileUploadTests {
     @Autowired
     private MockMvc mvc;
 
-    @Autowired
-    private StorageService storageService;
-
     @MockBean
     private StorageService storageServiceMock;
 
@@ -63,7 +60,7 @@ public class FileUploadTests {
                 .andDo(print())
                 .andExpect(status().isCreated());
 
-        then(this.storageService).should().store(multipartFile);
+        then(this.storageServiceMock).should().store(multipartFile);
     }
 
     @SuppressWarnings("unchecked")
