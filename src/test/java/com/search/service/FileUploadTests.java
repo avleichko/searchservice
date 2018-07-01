@@ -42,19 +42,19 @@ public class FileUploadTests {
     @Test
     public void shouldListAllFiles() throws Exception {
         given(this.storageServiceMock.loadAll())
-                .willReturn(Stream.of(Paths.get("first.csv"), Paths.get("second.csv")));
+                .willReturn(Stream.of(Paths.get("first.txt"), Paths.get("second.txt")));
 
         this.mvc.perform(get(STORAGE))
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(content().string(containsString("file:///")))
-                .andExpect(content().string(containsString("searchservice/first.csv")))
-                .andExpect(content().string(containsString("searchservice/second.csv")));
+                .andExpect(content().string(containsString("searchservice/first.txt")))
+                .andExpect(content().string(containsString("searchservice/second.txt")));
     }
 
     @Test
     public void SHouldExpectExceptionIfFileNameDoesNotContainCsv() throws Exception {
-        MockMultipartFile multipartFile = new MockMultipartFile("file", "test.csv",
+        MockMultipartFile multipartFile = new MockMultipartFile("file", "test.txt",
                 "text/plain", "Spring Framework".getBytes());
         this.mvc.perform(multipart(STORAGE).file(multipartFile))
                 .andDo(print())

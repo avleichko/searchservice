@@ -44,8 +44,8 @@ public class FileSystemStorageService implements StorageService {
             if (file.isEmpty()) {
                 throw new StorageException("Failed to store empty file " + filename);
             }
-            if(!file.getOriginalFilename().endsWith(".csv")){
-                throw new StorageException("only csv files supported");
+            if(!file.getOriginalFilename().endsWith(".txt")){
+                throw new StorageException("only txt files supported");
             }
             if (filename.contains("..")) {
                 // This is a security check
@@ -59,7 +59,7 @@ public class FileSystemStorageService implements StorageService {
                 Files.copy(inputStream, filepath, StandardCopyOption.REPLACE_EXISTING);
 
                 TreeSet<String> value = new TreeSet<>();
-                Files.lines(filepath).forEach(s -> value.addAll(Arrays.asList(s.split(","))));
+                Files.lines(filepath).forEach(s -> value.addAll(Arrays.asList(s.split(" "))));
 
                 inMemoryDataGrid.add(filename, value);
 

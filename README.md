@@ -1,6 +1,6 @@
 # Project Title
 
-Search service, this service stores uploaded csv files and gives ability to search if content exists in file 
+Search service, this service stores uploaded txt files and gives ability to search if content exists in file 
 
 ## Getting Started
 

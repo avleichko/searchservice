@@ -36,7 +36,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class SearchTests {
 
     private static final String SEARCH = "/search?searchParams=";
-    public static final String FILE_CSV = "file.csv";
+    public static final String FILE_CSV = "file.txt";
 
     @Autowired
     private MockMvc mvc;
@@ -62,7 +62,7 @@ public class SearchTests {
         this.mvc.perform(get(SEARCH + "1st"))
                 .andExpect(status().isOk())
                 .andDo(print())
-                .andExpect(content().string(containsString("\"file.csv\"")));
+                .andExpect(content().string(containsString("\"file.txt\"")));
     }
 
 
@@ -79,7 +79,7 @@ public class SearchTests {
 
 
     private void saveFileToStorage() throws IOException {
-        File file = new File("file.csv");
+        File file = new File("file.txt");
         FileInputStream input = new FileInputStream(file);
         MultipartFile multipartFile = new MockMultipartFile("file",
                 file.getName(), "text/plain", Files.readAllBytes(file.toPath()));
