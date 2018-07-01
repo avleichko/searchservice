@@ -9,14 +9,31 @@ Search service, this service stores uploaded csv files and gives ability to sear
 cd <your_path_to>/searchservice
 mvn clean install
 java -jar service-0.0.1-SNAPSHOT.jar
+
+open in your browser
+http://localhost:8081/swagger-ui.html
 ```
 
 ### Prerequisites
+service was designed to work with service ui. it can be downloaded here:
 
+```
+https://github.com/avleichko/search-service-ui.git
+```
 
+ java environment :
 ```
 java >= 1.8
 mvn >= 3.5.3
+
+```
+
+### limitations
+upload file limitation. these limitations could be changed in application.yml
+
+```
+max-file-size: 30MB
+max-request-size: 40MB
 
 ```
 
