@@ -24,11 +24,24 @@ public class FileUploadController {
         this.storageService = storageService;
     }
 
+    /**
+     * METHOD : GET
+     * get all files names from storage
+     *
+     * @return List<Path>
+     */
     @GetMapping
     public List<Path> listUploadedFiles() {
         return storageService.loadAll().collect(Collectors.toList());
     }
 
+
+    /**
+     * METHOD : POST
+     * method saves data to storage
+     *
+     * @param file file which needs to be stored
+     */
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -36,7 +49,7 @@ public class FileUploadController {
     public void handleFileUpload(@RequestParam("file") MultipartFile file) {
 
         storageService.store(file);
-        log.info(file.getOriginalFilename() +" saved");
+        log.info(file.getOriginalFilename() + " saved");
     }
 
 

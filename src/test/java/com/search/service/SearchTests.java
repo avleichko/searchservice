@@ -84,7 +84,6 @@ public class SearchTests {
         MultipartFile multipartFile = new MockMultipartFile("file",
                 file.getName(), "text/plain", Files.readAllBytes(file.toPath()));
 
-
         storageService.store(multipartFile);
     }
 

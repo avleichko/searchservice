@@ -34,6 +34,14 @@ public class SearchController {
         this.storageService = storageService;
     }
 
+    /**
+     * METHOD : GET
+     * search file name by given Array of strings
+     *
+     * @param searchParams String[] of search param
+     * @return List<String>
+     */
+
     @CrossOrigin(origins = "*")
     @GetMapping
     public List<String> search(String[] searchParams) {
@@ -46,6 +54,13 @@ public class SearchController {
         return inMemoryDataGrid.search(searchSet);
     }
 
+    /**
+     * METHOD : GET
+     * search file name by given Array of strings
+     *
+     * @param file file which needs to be downloaded
+     * @return resource
+     */
     @CrossOrigin(origins = "*")
     @GetMapping("/download")
     public ResponseEntity<Resource> download(String file) throws IOException {
