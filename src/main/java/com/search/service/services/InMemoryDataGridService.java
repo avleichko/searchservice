@@ -4,10 +4,7 @@ import exceptions.StorageFileNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.TreeMap;
-import java.util.TreeSet;
+import java.util.*;
 
 @Service
 @Slf4j
@@ -24,7 +21,7 @@ public class InMemoryDataGridService implements InMemoryDataGrid {
     }
 
     @Override
-    public List<String> search(List<String> searchData) {
+    public List<String> search(Set<String> searchData) {
         if (storage.isEmpty()) {
             throw new StorageFileNotFoundException("storage is empty");
         }

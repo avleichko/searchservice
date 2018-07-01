@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.core.io.Resource;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/search")
@@ -35,7 +37,9 @@ public class SearchController {
     @GetMapping
     public List<String> search(String[] searchParams) {
 
-        return inMemoryDataGrid.search(Arrays.asList(searchParams));
+        //using set here to avoid iterating over duplicate values in future
+        Set<String> searchSet = Stream.of(searchParams).collect(Collectors.toSet());
+        return inMemoryDataGrid.search(searchSet);
     }
 
     @CrossOrigin(origins = "http://localhost:8080")
