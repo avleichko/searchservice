@@ -38,6 +38,7 @@ public class SearchController {
         return inMemoryDataGrid.search(Arrays.asList(searchParams));
     }
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping("/download")
     public ResponseEntity<Resource> download(String file) throws IOException {
         ResponseEntity<Resource> result = storageService.download(file);
