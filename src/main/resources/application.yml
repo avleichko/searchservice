@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: searchservice
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 0
+      max-file-size: 30MB
+      max-request-size: 40MB
+      resolve-lazily: true
+
+server:
+  port: 8081
+
+debug: false
+
