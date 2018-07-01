@@ -28,13 +28,16 @@ mvn test
 
 ```
 
-### Break down into end to end tests
+### Unit tests
 
-Explain what these tests test and why
+testing layer developed using spring mockmvc
 
-TODO NEEDS TO ADD INFO ABOUT TESTS
+description below:
 ```
-Give an example
+* ApplicationIT.java - tests checks if swagger is ok and service health is ok
+* ServiceApplicationTests.java - checks if context is of
+* SearchTests.java  - check if file search works fine
+* FileUploadTests.java - checks if file can be uploaded
 ```
 
 ## Authors
