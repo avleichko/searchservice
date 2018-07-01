@@ -35,6 +35,7 @@ public class FileUploadController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
+    @CrossOrigin(origins = "http://localhost:8080")
     public void handleFileUpload(@RequestParam("file") MultipartFile file) {
 
         storageService.store(file);
