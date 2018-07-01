@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.core.io.Resource;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -36,6 +37,8 @@ public class SearchController {
     @CrossOrigin(origins = "*")
     @GetMapping
     public List<String> search(String[] searchParams) {
+
+        log.info("search via following params" + Arrays.toString(searchParams));
 
         //using set here to avoid iterating over duplicate values in future
         Set<String> searchSet = Stream.of(searchParams).collect(Collectors.toSet());
