@@ -23,7 +23,7 @@ import java.util.stream.Stream;
 @Slf4j
 public class SearchController {
 
-    private InMemoryDataGrid inMemoryDataGrid;
+    private final InMemoryDataGrid inMemoryDataGrid;
     private StorageService storageService;
 
     // I know that it will work without Autowired, but i just used to write it

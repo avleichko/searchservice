@@ -13,7 +13,7 @@ public class InMemoryDataGridService implements InMemoryDataGrid {
     /**
      * using TreeMap and TreeSet to get O(log(n)) complexity
      */
-    private TreeMap<String, TreeSet<String>> storage = new TreeMap<>();
+    private final TreeMap<String, TreeSet<String>> storage = new TreeMap<>();
 
     @Override
     public void get(String key) {
