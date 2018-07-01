@@ -41,6 +41,7 @@ public class SearchController {
         log.info("search via following params" + Arrays.toString(searchParams));
 
         //using set here to avoid iterating over duplicate values in future
+
         Set<String> searchSet = Stream.of(searchParams).collect(Collectors.toSet());
         return inMemoryDataGrid.search(searchSet);
     }
