@@ -33,7 +33,7 @@ public class SearchController {
         this.storageService = storageService;
     }
 
-    @CrossOrigin(origins = "http://localhost:8080")
+    @CrossOrigin(origins = "*")
     @GetMapping
     public List<String> search(String[] searchParams) {
 
@@ -42,7 +42,7 @@ public class SearchController {
         return inMemoryDataGrid.search(searchSet);
     }
 
-    @CrossOrigin(origins = "http://localhost:8080")
+    @CrossOrigin(origins = "*")
     @GetMapping("/download")
     public ResponseEntity<Resource> download(String file) throws IOException {
         ResponseEntity<Resource> result = storageService.download(file);
